@@ -1,67 +1,61 @@
-# Mini GACS Prototype - Mood & Style Embedding Pipeline
+# Mini GACS Prototype — Mood & Style Embedding Pipeline
 
 ## Overview
 
 This project implements a lightweight affective computing pipeline to analyze the **mood and stylistic similarity** of art and marketing visuals.
 
-Using short videos as input, the system:
+The system processes short videos, extracts frames, generates semantic embeddings using a pre-trained CLIP model, and computes similarity to identify visual mood relationships.
 
-* Extracts representative frames
-* Generates semantic embeddings using a pre-trained CLIP model
-* Computes similarity across frames
-* Visualizes mood clusters
-
-This prototype demonstrates the foundation for a **Creative Affective Computing System (GACS)** aligned with GenTA’s vision of understanding the “feel” of visual content.
+This prototype demonstrates the foundational workflow for a Creative Affective Computing System (GACS) aligned with GenTA’s vision.
 
 ---
 
-## Video Sources
+## Dataset
 
-The following royalty-free videos were used in this project:
+The repository contains three short videos used as input:
 
-1. **Abstract Visual Clip**
-   `14487894_3840_2160_24fps.mp4`
+* 14487894_3840_2160_24fps.mp4
+* 5352609-hd_1080_1920_25fps.mp4
+* 5738706-hd_1920_1080_24fps.mp4
 
-2. **Lifestyle / Marketing Clip**
-   `5352609-hd_1080_1920_25fps.mp4`
-
-3. **Nature Cinematic Clip**
-   `5738706-hd_1920_1080_24fps.mp4`
-
+These videos represent distinct visual styles to enable mood comparison.
 
 ---
 
-## Pipeline Steps
+## Pipeline Workflow
 
-1. Upload videos via notebook
-2. Extract frames at fixed intervals
-3. Compute CLIP embeddings
-4. Normalize vectors and validate outputs
-5. Compute cosine similarity matrix
-6. Visualize similarity heatmap
+1. Load videos from the `data/` folder
+2. Extract representative frames at fixed intervals
+3. Compute CLIP embeddings for each frame
+4. Normalize embeddings and run validation checks
+5. Compute pairwise cosine similarity
+6. Visualize similarity using a heatmap
 7. Retrieve top-k similar frames
 
+Frames and embeddings are generated dynamically and are not stored in the repository.
+
 ---
 
-## Results & Observations
+## Results Summary
 
-The similarity heatmap reveals clear block-like clusters corresponding to each video source.
+The similarity heatmap reveals clear clustering patterns:
 
-* Abstract visuals cluster due to shared color patterns and textures
-* Lifestyle frames group based on scene composition and human presence
-* Nature scenes show high internal similarity reflecting calm aesthetics
+* Frames from the same video show high similarity
+* Abstract visuals cluster due to shared colors and textures
+* Lifestyle footage groups based on composition
+* Nature scenes display consistent calm visual characteristics
 
-These results indicate that embeddings capture **perceptual mood** rather than pixel similarity.
+These results indicate that embeddings capture perceptual mood rather than pixel similarity.
 
 ---
 
 ## Connection to GenTA
 
-This prototype demonstrates how embedding-based similarity can:
+This pipeline demonstrates how embedding-based similarity can be used to:
 
-* Generate a **vibe score** for creatives
-* Enable creative similarity search
-* Serve as input features for predicting engagement metrics (CTR, ROAS)
+* Generate a creative-level “vibe score”
+* Enable similarity search for creatives
+* Serve as features for predicting engagement metrics (CTR, ROAS)
 
 ---
 
@@ -71,14 +65,14 @@ This prototype demonstrates how embedding-based similarity can:
 mini-gacs-prototype/
 │
 ├── notebook.ipynb
+├── README.md
 ├── report.pdf
 ├── requirements.txt
 │
-├── data/
-│   └── video_sources.md
-│
-├── frames/
-├── embeddings/
+└── data/
+    ├── 14487894_3840_2160_24fps.mp4
+    ├── 5352609-hd_1080_1920_25fps.mp4
+    └── 5738706-hd_1920_1080_24fps.mp4
 ```
 
 ---
@@ -93,14 +87,13 @@ pip install -r requirements.txt
 
 ---
 
-## How to Run
+## Running the Pipeline
 
 1. Open `notebook.ipynb`
-2. Upload the video files when prompted
-3. Run all cells
-4. Outputs:
+2. Run all cells sequentially
+3. Outputs generated:
 
-   * Extracted frames
+   * Extracted frames (temporary)
    * Embedding matrix
    * Similarity heatmap
 
@@ -108,13 +101,17 @@ pip install -r requirements.txt
 
 ## Verification Steps
 
+The pipeline includes:
+
 * Embedding shape validation
 * NaN checks
-* Self-similarity test
-* File existence checks
+* Self-similarity assertion
+* File existence validation
+
+These ensure robustness and reproducibility.
+
 ---
 
-## License
 
-For research and evaluation purposes only.
-Video assets belong to original creators.
+**Pavanadithya Karnan**
+
